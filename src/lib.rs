@@ -74,7 +74,7 @@ extern "C" fn handle() {
                     // Program's turn
                     let pebbles_to_remove = match game_state.difficulty {
                         DifficultyLevel::Easy => {
-                            (get_random_u32() % game_state.max_pebbles_per_turn + 1) as u32
+                            get_random_u32() % game_state.max_pebbles_per_turn + 1
                         }
                         DifficultyLevel::Hard => find_best_move(
                             game_state.pebbles_remaining,
@@ -130,7 +130,7 @@ fn find_best_move(pebbles_remaining: u32, max_pebbles_per_turn: u32) -> u32 {
     let target = (pebbles_remaining - 1) % (max_pebbles_per_turn + 1);
     if target == 0 {
         // If no strategic move is possible, remove a random valid number of pebbles
-        (get_random_u32() % max_pebbles_per_turn + 1) as u32
+        get_random_u32() % max_pebbles_per_turn + 1
     } else {
         target
     }
